@@ -15,7 +15,7 @@ run(){
     then
         echo "PASS,$module_1_1_2" | tee -a $output
     else
-        echo "PASS,$module_1_1_2" | tee -a $output
+        echo "FAIL,$module_1_1_2" | tee -a $output
     fi
 }
 

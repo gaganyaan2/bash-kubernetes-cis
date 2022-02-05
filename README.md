@@ -4,7 +4,7 @@
 
 ```bash
 sh main.sh
-OR
+#OR
 bash main.sh
 ```
 
