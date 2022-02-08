@@ -37,6 +37,42 @@ run(){
     else
         sh parser.sh "FAIL" "$c_number" "$c_name"
     fi
+
+    c_number="1.1.5"
+    c_name="Ensure that the scheduler pod specification file permissions are set to 644 or more restrictive (Automated)"
+    if [ "$(stat -c %a /etc/kubernetes/manifests/kube-scheduler.yaml)" -lt "644" ]
+    then
+        sh parser.sh "PASS" "$c_number" "$c_name"
+    else
+        sh parser.sh "FAIL" "$c_number" "$c_name"
+    fi
+
+    c_number="1.1.6"
+    c_name="Ensure that the scheduler pod specification file ownership is set to root:root (Automated)"
+    if [ "$(stat -c %U:%G /etc/kubernetes/manifests/kube-scheduler.yaml)" == "root:root" ]
+    then
+        sh parser.sh "PASS" "$c_number" "$c_name"
+    else
+        sh parser.sh "FAIL" "$c_number" "$c_name"
+    fi
+
+    c_number="1.1.7"
+    c_name="Ensure that the etcd pod specification file permissions are set to 644 or more restrictive (Automated)"
+      if [ "$(stat -c %a /etc/kubernetes/manifests/etcd.yaml)" -lt "644" ]
+    then
+        sh parser.sh "PASS" "$c_number" "$c_name"
+    else
+        sh parser.sh "FAIL" "$c_number" "$c_name"
+    fi
+
+    c_number="1.1.8"
+    c_name="Ensure that the etcd pod specification file ownership is set to root:root (Automated)"
+    if [ "$(stat -c %U:%G /etc/kubernetes/manifests/etcd.yaml)" == "root:root" ]
+    then
+        sh parser.sh "PASS" "$c_number" "$c_name"
+    else
+        sh parser.sh "FAIL" "$c_number" "$c_name"
+    fi
 }
 
 run
